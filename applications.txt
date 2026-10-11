@@ -1,0 +1,82 @@
+APPLICATIONS OF THE GNU RADIO BPSK COMMUNICATION SYSTEM
+=========================================================
+
+This project is a baseband BPSK link with a noisy channel, a simple receiver,
+a constellation display and a running BER estimate. It is a simulation, so the
+applications below describe where the same ideas and the same flowgraph can be
+used or extended. Where a real-world system is named, only the underlying
+technique (BPSK, BER measurement) is shared, not the full system.
+
+
+1. EDUCATION AND LABORATORY TEACHING
+------------------------------------
+- Teach digital modulation visually: students see bits become -1/+1 points,
+  then see noise smear them on the constellation.
+- Demonstrate why noise causes bit errors and how BER grows with noise.
+- Digital Communication / Communication Systems / DSP lab experiment that
+  needs no RF hardware, only a laptop.
+- Show data-type handling in a signal chain (complex, float, byte streams).
+
+2. DEVELOPMENT AND TESTING OF RECEIVER ALGORITHMS
+-------------------------------------------------
+- Use as a test bench: replace the Binary Slicer with a better detector
+  and compare BER.
+- Test timing recovery, carrier recovery or equalizer blocks by adding them
+  between the Channel Model and the receiver.
+- Use the XOR + Moving Average chain as a reusable BER meter for any
+  hard-decision receiver.
+
+3. BER VS NOISE PERFORMANCE STUDIES
+-----------------------------------
+- Sweep the Channel Model noise voltage and plot BER against noise.
+- Compare measured BER with the theoretical BPSK curve to validate the
+  simulation.
+- Use as a first step before link-budget style analysis.
+
+4. SDR HARDWARE PROTOTYPING (FUTURE EXTENSION)
+----------------------------------------------
+- Replace the Channel Model with an SDR source (for example RTL-SDR for
+  receive-only experiments) to process real signals with the same receiver.
+- Move from simulation to a real transmit/receive link with a supported SDR
+  transceiver, where transmission is legally permitted.
+
+5. WHERE BPSK ITSELF IS USED IN PRACTICE
+----------------------------------------
+BPSK is a robust, simple modulation, so the concepts here apply to:
+- Low-rate modes of wireless standards (for example the lowest data rates of
+  Wi-Fi use BPSK).
+- Satellite and space telemetry links, where robustness at low signal-to-noise
+  ratio matters more than speed.
+- GPS and other navigation signals, which use BPSK-style phase modulation.
+- Low-power telemetry and sensor links in IoT systems.
+
+6. IoT AND EMBEDDED SYSTEMS RESEARCH
+------------------------------------
+- Estimate how noise would affect a low-rate sensor data link before
+  building hardware.
+- Prototype a modem in GNU Radio, then port the demodulation logic to a
+  microcontroller or FPGA implementation.
+
+7. ACADEMIC AND PORTFOLIO USE
+-----------------------------
+- Mini-project or final-year project base in Electronics and Communication
+  Engineering.
+- Portfolio / GitHub project showing skills in GNU Radio, digital
+  communication, signal processing and performance analysis.
+- Foundation for a paper or report on BER analysis, QPSK extension, fading
+  channels or pulse shaping.
+
+8. EXTENSION IDEAS
+------------------
+- QPSK or higher-order modulation using the same structure.
+- Pulse shaping with root-raised-cosine filters and a matched filter.
+- Fading channel models and equalization.
+- Packet framing, preambles and synchronization.
+- Error-correcting codes (convolutional, Hamming) to show coding gain.
+
+
+NOTE
+----
+The current version is a baseband simulation. Before using its BER numbers in
+a report, confirm that the transmitted and recovered bit streams are aligned
+(BER should read 0 at zero noise) and run long enough for a stable estimate.
